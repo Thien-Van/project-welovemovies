@@ -1,9 +1,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable("critics", (table) => {
-    knex.increment("critic_id").primary();
-    knex.string("preferred_name");
-    knex.string("surname");
-    knex.string("organization_name");
+    table.increments("critic_id").primary();
+    table.string("preferred_name");
+    table.string("surname");
+    table.string("organization_name");
   });
 };
 
