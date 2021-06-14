@@ -8,7 +8,6 @@ function list() {
 }
 
 function filteredList(movieId) {
-  console.log("movieId given over", movieId);
   return knex("movies_theaters as mt")
     .join("theaters as t", "mt.theater_id", "t.theater_id")
     .select("t.*", "mt.movie_id")

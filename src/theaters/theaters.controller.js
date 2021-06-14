@@ -4,7 +4,7 @@ async function list(req, res, next) {
   const { movieId } = req.params;
   if (movieId) {
     const theatersMovie = await service.filteredList(movieId);
-    if (theatersMovie) {
+    if (theatersMovie.length > 0) {
       res.json(theatersMovie);
     } else {
       return next({ status: 404, message: "Movie cannot be found." });
