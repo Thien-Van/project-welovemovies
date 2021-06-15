@@ -26,6 +26,19 @@ function list(movieId) {
     });
 }
 
+function read(reviewId) {
+  return knex("reviews").select("*").where({ review_id: reviewId });
+}
+
+function update(updatedReview, reviewId) {
+  return knex("reviews")
+    .select("*")
+    .where({ review_id: reviewId })
+    .update(updatedReview, "*");
+}
+
 module.exports = {
   list,
+  read,
+  update,
 };
