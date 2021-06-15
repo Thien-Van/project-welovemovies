@@ -34,7 +34,11 @@ async function update(req, res, next) {
   res.json({ data });
 }
 
-async function destroy(req, res, next) {}
+async function destroy(req, res, next) {
+  const reviewId = res.locals.review.review_id;
+  await service.delete(reviewId);
+  res.sendStatus(204);
+}
 
 module.exports = {
   list,
