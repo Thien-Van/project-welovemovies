@@ -3,7 +3,7 @@ const knex = require("../db/connection");
 function list(movieId) {
   return knex("reviews as r")
     .join("critics as c", "r.critic_id", "c.critic_id")
-    .select("r.*", "c.* as critic")
+    .select("r.*", "c.*")
     .where("r.movie_id", movieId)
     .then((data) => {
       const restructuredData = data.map((review) => {
@@ -36,7 +36,6 @@ function update(updatedReview, reviewId) {
     .where({ review_id: reviewId })
     .update(updatedReview, "*")
     .then(([data]) => {
-      console.log("data", data);
       return knex("critics")
         .select("*")
         .where({ critic_id: data.critic_id })

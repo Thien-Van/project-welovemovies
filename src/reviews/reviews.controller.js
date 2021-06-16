@@ -26,10 +26,11 @@ async function list(req, res, next) {
 }
 
 async function update(req, res, next) {
-  const updatedReview = { ...req.body };
+  const { data } = req.body;
+  const updatedReview = { ...data };
   const reviewId = res.locals.review.review_id;
-  const data = await service.update(updatedReview, reviewId);
-  res.json({ data });
+  const updatedData = await service.update(updatedReview, reviewId);
+  res.json({ updatedData });
 }
 
 async function destroy(req, res, next) {
