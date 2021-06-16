@@ -12,7 +12,6 @@ async function movieExists(req, res, next) {
 
 async function read(req, res, next) {
   const movie = res.locals.movie;
-  console.log("found", movie);
   res.json({ movie });
 }
 

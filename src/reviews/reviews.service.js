@@ -34,7 +34,20 @@ function update(updatedReview, reviewId) {
   return knex("reviews")
     .select("*")
     .where({ review_id: reviewId })
-    .update(updatedReview, "*");
+    .update(updatedReview, "*")
+    .then(([data]) => {
+      console.log("data", data);
+      return knex("critics")
+        .select("*")
+        .where({ critic_id: data.critic_id })
+        .then(([critic]) => {
+          const combinedData = {
+            ...data,
+            critic,
+          };
+          return combinedData;
+        });
+    });
 }
 
 function destroy(reviewId) {

@@ -12,10 +12,8 @@ async function reviewExists(req, res, next) {
 
 async function list(req, res, next) {
   const { movieId } = req.params;
-  console.log("movie is", movieId);
 
   if (movieId) {
-    console.log("movie is", movieId);
     const data = await service.list(movieId);
     if (data) {
       res.json(data);
