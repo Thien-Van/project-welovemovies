@@ -16,7 +16,7 @@ async function list(req, res, next) {
   if (movieId) {
     const data = await service.list(movieId);
     if (data) {
-      res.json(data);
+      res.json({ data });
     } else {
       return next({ status: 404, message: "Movie cannot be found." });
     }
@@ -27,10 +27,12 @@ async function list(req, res, next) {
 
 async function update(req, res, next) {
   const { data } = req.body;
+  console.log("received Data", { ...data });
   const updatedReview = { ...data };
+  console.log("giving over updatedReview", updatedReview);
   const reviewId = res.locals.review.review_id;
   const updatedData = await service.update(updatedReview, reviewId);
-  res.json({ updatedData });
+  res.json({ data: updatedData });
 }
 
 async function destroy(req, res, next) {

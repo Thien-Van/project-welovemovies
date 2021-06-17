@@ -12,7 +12,7 @@ async function movieExists(req, res, next) {
 
 async function read(req, res, next) {
   const movie = res.locals.movie;
-  res.json({ movie });
+  res.json({ data: movie });
 }
 
 async function list(req, res, next) {

@@ -17,10 +17,6 @@ function list() {
         is_showing: ["movies", null, "is_showing"],
       });
       const reformattedTheaters = reduceMovies(data);
-      // console.log("reformat", reformattedTheaters);
-      // const theaters = reformattedTheaters.map((theater) => {
-      //   theater.movies = { theater_id: theater.theater_id };
-      // });
       return reformattedTheaters;
     });
 }

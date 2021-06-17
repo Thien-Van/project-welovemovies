@@ -31,11 +31,12 @@ function read(reviewId) {
 }
 
 function update(updatedReview, reviewId) {
+  console.log("updatedReview received from controller", updatedReview);
   return knex("reviews")
-    .select("*")
     .where({ review_id: reviewId })
     .update(updatedReview, "*")
     .then(([data]) => {
+      console.log("after then data", data);
       return knex("critics")
         .select("*")
         .where({ critic_id: data.critic_id })

@@ -30,10 +30,14 @@ describe("Review Routes", () => {
     test("updates an existing review, returning the updated review including the critic info", async () => {
       const data = { content: "Content" };
       const previous = await db("reviews").first();
+      console.log("previous", previous);
+      console.log({ data });
 
       const response = await request(app)
         .put(`/reviews/${previous.review_id}`)
         .send({ data });
+
+      console.log("response", response);
 
       expect(response.body.error).toBeUndefined();
       expect(response.body.data).toEqual(
@@ -54,6 +58,7 @@ describe("Review Routes", () => {
         .where({ review_id: previous.review_id })
         .first();
 
+      console.log("updated Review", updatedReview);
       expect(updatedReview.content).toBe("Content");
     });
   });
